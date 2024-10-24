@@ -99,7 +99,7 @@ class minimize():
                 self.current_state = proposed_neighbor[:]
                 self.accept += 1
 
-            # check if the current neighbor is best solution so far
+            # check if the current neighbor is the best solution so far
             if E_n < self.best_energy:
                 self.best_energy = E_n
                 self.best_state = proposed_neighbor[:]
@@ -120,7 +120,7 @@ class minimize():
 
 
     def move_continuous(self):
-        # preturb current state by a random amount
+        # perturb current state by a random amount
         neighbor = [item + ((random() - 0.5) * self.damping) for item in self.current_state]
 
         # clip to upper and lower bounds
@@ -180,9 +180,10 @@ class minimize():
     def cooling_exponential_m(self, step):
         return self.t_max * self.alpha**step
 
-    # logarithmical multiplicative cooling
+    # logarithmic multiplicative cooling
     def cooling_logarithmic_m(self, step):
-        return self.t_max / (self.alpha * log(step + 1))
+        # return self.t_max / (self.alpha * log(step + 1))
+        return self.t_max / (1 + self.alpha * log(1 + step))
 
 
     def safe_exp(self, x):
