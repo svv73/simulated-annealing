@@ -104,12 +104,12 @@ class minimize():
                 self.best_energy = E_n
                 self.best_state = proposed_neighbor[:]
 
-            # persist some info for later
-            self.hist.append([
-                self.step,
-                self.t,
-                self.current_energy,
-                self.best_energy])
+                # persist some info for later
+                self.hist.append([
+                    self.step,
+                    self.t,
+                    self.current_energy,
+                    self.best_energy])
 
             # update some stuff
             self.t = self.update_t(self.step)
